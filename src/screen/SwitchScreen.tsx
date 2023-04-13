@@ -1,33 +1,58 @@
 import React, { useState } from 'react';
-import {StyleSheet, Text, View, Switch, Platform} from 'react-native';
+import { StyleSheet, Text, View, Switch, Platform } from 'react-native';
 import { HeaderTitle } from '../components/HeaderTitle';
+import { CustonSwitch } from '../components/CustonSwitch';
 
 export const SwitchScreen = () => {
 
-    const [isEnabled, setIsEnabled] = useState(false);
-    const toggleSwitch = () => setIsEnabled( !isEnabled);
+    const [state, setState] = useState({
+        isActive: true,
+        isHungry: false,
+        isHappy: true
+    })
+
+    const onChange = (value: boolean, field: keyof typeof state) =>{
+        setState({
+            ...state,
+            [field]:value
+        })
+    }
+
+    const {isActive, isHappy, isHungry} =state;
 
     return (
         <View style={styles.container}>
 
-            <HeaderTitle title='Swtiches'/>
+            <HeaderTitle title='Swtiches' />
 
-          <Switch
-            trackColor={{false: '#D9D9DB', true: '#5858D6'}}
-            thumbColor={(Platform.OS === "android") ? "#5856d6" : ""}
-            //ios_backgroundColor="#3e3e3e"
-            onValueChange={toggleSwitch}
-            value={isEnabled}
-          />
+            <View style={styles.swichtRow}>
+            <Text style={styles.switchText}>isActive</Text>
+            <CustonSwitch isOn={isActive} onChange={(value)=> onChange(value, "isActive")}/>
+            </View>
+
+            <Text style={styles.switchText}>
+                {
+                    JSON.stringify(state, null,5)
+                }
+            </Text>
+
         </View>
-      );
-    };
+    );
+};
 
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+    container: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    switchText:{
+        fontSize:25
+    },
+    swichtRow:{
+        flexDirection:"row",
+        justifyContent:"space-between",
+        alignItems:"center"
+    }
 });
