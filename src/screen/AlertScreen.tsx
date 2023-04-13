@@ -17,8 +17,20 @@ export const AlertScreen = () => {
         ]
         ,
         {
-           cancelable:true     
+           cancelable:true      //Para que al tocar afuera de la alerta, se salga solo en android
         }
+        )
+    }
+
+    const showPrompt = () => {
+       
+        Alert.prompt(
+            "Esta seguro?",
+            "Esta accion no se puede revertir",
+            (valor: string) => console.log("info: ", valor),
+            "secure-text",
+            "Hola mundo",
+            "number-pad"
         )
     }
     
@@ -30,6 +42,10 @@ export const AlertScreen = () => {
             <Button 
             title='Mostrar alerta'
             onPress={showAlert}/>
+            
+            <Button 
+            title='Mostrar prompt'
+            onPress={showPrompt}/>
         </View>
     );
 }
