@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import {StyleSheet, Text, View, Switch, Platform} from 'react-native';
+import { HeaderTitle } from '../components/HeaderTitle';
 
 export const SwitchScreen = () => {
 
@@ -8,6 +9,9 @@ export const SwitchScreen = () => {
 
     return (
         <View style={styles.container}>
+
+            <HeaderTitle title='Swtiches'/>
+
           <Switch
             trackColor={{false: '#D9D9DB', true: '#5858D6'}}
             thumbColor={(Platform.OS === "android") ? "#5856d6" : ""}
