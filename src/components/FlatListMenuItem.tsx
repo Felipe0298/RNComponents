@@ -3,6 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { menuItem } from '../interfaces/appInterfaces';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { TouchableOpacity } from 'react-native';
+import { CommonActions, useNavigation } from '@react-navigation/native';
 
 interface Props {
     menuItem: menuItem;
@@ -10,9 +11,12 @@ interface Props {
 
 export const FlatListMenuItem = ({ menuItem }: Props) => {
 
+    const navigation = useNavigation();
 
     return (
-        <TouchableOpacity>
+        <TouchableOpacity
+        activeOpacity={0.8}
+        onPress={()=>navigation.dispatch(CommonActions.navigate({name: menuItem.component}))}>
 
             <View style={styles.container}>
                 <Icon
@@ -24,6 +28,8 @@ export const FlatListMenuItem = ({ menuItem }: Props) => {
                 <Text style={{ color: "black", ...styles.itemText }}>{menuItem.name}</Text>
 
                 <View style={{ flex: 1 }} /> 
+                {/* Para que la flecha se vaya al fondo, el flex:1 hace que 
+                                                se ocupe todo el espacio */}
 
                 <Icon
                     name="chevron-forward-outline"
