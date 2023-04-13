@@ -30,6 +30,16 @@ export const SwitchScreen = () => {
             <CustonSwitch isOn={isActive} onChange={(value)=> onChange(value, "isActive")}/>
             </View>
 
+            <View style={styles.swichtRow}>
+            <Text style={styles.switchText}>isHungry</Text>
+            <CustonSwitch isOn={isActive} onChange={(value)=> onChange(value, "isHungry")}/>
+            </View>
+
+            <View style={styles.swichtRow}>
+            <Text style={styles.switchText}>isHappy</Text>
+            <CustonSwitch isOn={isActive} onChange={(value)=> onChange(value, "isHappy")}/>
+            </View>
+
             <Text style={styles.switchText}>
                 {
                     JSON.stringify(state, null,5)
@@ -53,6 +63,7 @@ const styles = StyleSheet.create({
     swichtRow:{
         flexDirection:"row",
         justifyContent:"space-between",
-        alignItems:"center"
+        alignItems:"center",
+        marginVertical:10
     }
 });
