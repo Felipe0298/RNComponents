@@ -4,14 +4,12 @@ import { FlatList } from 'react-native-gesture-handler';
 import Icon from "react-native-vector-icons/Ionicons"
 import { styles } from '../theme/appTheme';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { menuItem } from '../interfaces/appInterfaces';
+import { FlatListMenuItem } from '../components/FlatListMenuItem';
 
-interface menuItem {
-    name: string;
-    icon: string;
-    components: string;
-}
 
-const menuItems = [
+
+const menuItems: menuItem[] = [
     {
         name: "Animation 101",
         icon: "cube-outline",
@@ -26,14 +24,6 @@ const menuItems = [
 export const HomeScreen = () => {
 
     const { top } = useSafeAreaInsets();
-
-    const renderMenuItem = (menuItem: menuItem) => {
-        return (
-            <View>
-                <Text style={{ color: "black" }}>{menuItem.name} - {menuItem.icon}</Text>
-            </View>
-        )
-    }
 
     const renderListHeader = () => {
         return (
@@ -60,7 +50,7 @@ export const HomeScreen = () => {
 
             <FlatList
                 data={menuItems}
-                renderItem={({ item }) => renderMenuItem(item)}
+                renderItem={({ item }) => <FlatListMenuItem menuItem={item}/>}
                 keyExtractor={(item) => item.name} //TIene que ser algo unico y un string
                 ListHeaderComponent={() => renderListHeader()}
                 ItemSeparatorComponent={() => itemSeparator()}
