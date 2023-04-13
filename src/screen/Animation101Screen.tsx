@@ -1,58 +1,29 @@
 import React, { useRef } from 'react';
 import { Animated, Button, Easing, StyleSheet, Text, View } from 'react-native';
+import { useAnimation } from '../hooks/useAnimation';
 
 export const Animation101Screen = () => {
 
-    const opacity = useRef(new Animated.Value(0)).current;
-    const top = useRef(new Animated.Value(-100)).current;
-
-
-    const fadeIn = () =>{
-        Animated.timing(
-            opacity,
-            {
-                toValue:1,
-                duration:300,
-                useNativeDriver:true //Ayuda a que la animation sea acelerada por hardware
-            }
-        ).start( () => console.log("Animacion terminó"))
-
-        Animated.timing(
-            top,
-            {
-                toValue:0,
-                duration:1000,
-                useNativeDriver:true,
-                easing: Easing.bounce //Esto es para que rebote
-            }
-        ).start()
-    }
-
-    const fadeOut= ()=>{
-        Animated.timing(
-            opacity,
-            {
-                toValue:0,
-                duration:300,
-                useNativeDriver:true
-            }
-        ).start()
-    }
-
+    const { fadeIn, fadeOut, opacity, position, startMovingPosition } = useAnimation()
 
     return (
         <View style={styles.container}>
-            <Animated.View style={{...styles.purpleBox,
-            opacity,
-            transform:[{
-                translateY: top
-            }],
-            marginBottom:20,
+            <Animated.View style={{
+                ...styles.purpleBox,
+                opacity,
+                transform: [{
+                    translateX: position
+                }],
+                marginBottom: 20,
             }} />
 
 
-            <Button title="FadeIn" onPress={fadeIn} />
-            <Button title='FadeOut' onPress={fadeOut}/>
+            <Button title="FadeIn"
+                onPress={() => {
+                    fadeIn();
+                    startMovingPosition(-100)
+                }} />
+            <Button title='FadeOut' onPress={fadeOut} />
         </View>
     );
 }
@@ -68,5 +39,5 @@ const styles = StyleSheet.create({
         width: 150,
         height: 150
     },
-    
+
 });
