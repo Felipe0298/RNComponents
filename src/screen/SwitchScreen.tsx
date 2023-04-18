@@ -32,12 +32,12 @@ export const SwitchScreen = () => {
 
             <View style={styles.swichtRow}>
             <Text style={styles.switchText}>isHungry</Text>
-            <CustonSwitch isOn={isActive} onChange={(value)=> onChange(value, "isHungry")}/>
+            <CustonSwitch isOn={isHungry} onChange={(value)=> onChange(value, "isHungry")}/>
             </View>
 
             <View style={styles.swichtRow}>
             <Text style={styles.switchText}>isHappy</Text>
-            <CustonSwitch isOn={isActive} onChange={(value)=> onChange(value, "isHappy")}/>
+            <CustonSwitch isOn={isHappy} onChange={(value)=> onChange(value, "isHappy")}/>
             </View>
 
             <Text style={styles.switchText}>
