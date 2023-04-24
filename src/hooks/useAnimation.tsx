@@ -6,15 +6,15 @@ export const useAnimation = () => {
     const position = useRef(new Animated.Value(0)).current;
 
 
-    const fadeIn = () =>{
+    const fadeIn = ( duration: number = 300) =>{
         Animated.timing(
             opacity,
             {
                 toValue:1,
-                duration:300,
+                duration,
                 useNativeDriver:true //Ayuda a que la animation sea acelerada por hardware
             }
-        ).start( () => console.log("Animacion terminó"))
+        ).start()
 
     }
 
