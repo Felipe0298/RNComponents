@@ -22,7 +22,13 @@ export const InfiniteScrollScreen = () => {
     const renderItem = (item: number) =>{
         return(
 
-            <FadeInImage uri = {`https://picsum.photos/id/${item}/500/400`} />
+            <FadeInImage uri = {`https://picsum.photos/id/${item}/500/400`} 
+                style={{
+                    width: "100%",
+                    height: 400, 
+                    borderRadius: 10
+                }}
+            />
 
             /* <Image
                 source={{uri: `https://picsum.photos/id/${item}/500/400`}}
@@ -41,7 +47,11 @@ export const InfiniteScrollScreen = () => {
             keyExtractor={(item)=> item.toString()}
             renderItem={ ({item}) => renderItem(item) }
 
-            ListHeaderComponent={ <HeaderTitle title='InfiniteScroll'/>}
+            ListHeaderComponent={ () =>(
+                <View style={{marginHorizontal:20}}>
+                    <HeaderTitle title='InfiniteScroll'/>
+                </View>
+            )}
             onEndReached={loadMore}
             onEndReachedThreshold={0.5}
 
